@@ -1,6 +1,6 @@
-import locations from './locations.json' with { type: 'json' }
-// locations: https://raw.githubusercontent.com/Netrvin/cloudflare-colo-list/refs/heads/main/locations.json
 import fs from 'node:fs'
+import locations from './locations.json' with { type: 'json' }
+// wget "https://speed.cloudflare.com/locations" -o scripts/locations.json
 
 const displayNames = new Intl.DisplayNames(['en-US'], { type: 'region' })
 
@@ -10,6 +10,7 @@ const COLOS = Object.values(locations)
       acc[location.iata?.toUpperCase()] = {
         country: location.cca2?.toUpperCase(),
         location: [location.city, displayNames.of(location.cca2?.toUpperCase())].filter(Boolean).join(', '),
+        colo: location.iata?.toUpperCase(),
       }
     }
     return acc
