@@ -1,7 +1,9 @@
 name = "dns-surf-worker"
 main = "lib/dns-query.ts"
 compatibility_date = "2024-09-25"
-workers_dev = false
+
+[assets]
+directory = "./out"
 
 [limits]
 cpu_ms = 10
